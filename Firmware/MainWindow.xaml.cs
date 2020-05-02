@@ -29,6 +29,7 @@ namespace WpfApp1
         readonly private static string[] stopBitsValues = { "1", "2", "1.5" };
         readonly private static string[] EndOfLineValues = { "None", "NL", "CR", "NL&CR" };
         readonly private static string[] portCValues = { "Digital Input", "Analog Input" };
+        readonly private static string[] portBFrequencyValues = { "Low", "Medium", "High" };
 
         private static int oldComPortsAmount = -1;
 
@@ -47,10 +48,13 @@ namespace WpfApp1
             InitParityValuesComboBox();
             InitStopBitsValuesComboBox();
             InitPortCModeValuesComboBox();
-
+            InitportBFrequency();
+            
+            
             InitPortAIndicators();
             InitPortBIndicators();
             InitPortCIndicators();
+
 
             serialPort = new SerialPort();
 
@@ -149,7 +153,7 @@ namespace WpfApp1
             Dispatcher.Invoke(() =>
             {
                 PortsComboBox.SelectedIndex = 0;
-                BaudRateValuesComboBox.SelectedItem = "115200";
+                BaudRateValuesComboBox.SelectedItem = "9600";
                 DataBitsValuesComboBox.SelectedItem = "8";
                 ParityValuesComboBox.SelectedItem = "None";
                 StopBitsValuesComboBox.SelectedItem = "1";
@@ -267,6 +271,45 @@ namespace WpfApp1
             C7_ComboBox.Items.Add("SPI_MISO");
             C8_ComboBox.Items.Add("SPI_SCK");
             C9_ComboBox.Items.Add("SPI_CS");
+
+
+            C0_ComboBox.IsEnabled = false;
+            C1_ComboBox.IsEnabled = false;
+            C2_ComboBox.IsEnabled = false;
+            C3_ComboBox.IsEnabled = false;
+            C4_ComboBox.IsEnabled = false;
+            C5_ComboBox.IsEnabled = false;
+            C6_ComboBox.IsEnabled = false;
+            C7_ComboBox.IsEnabled = false;
+            C8_ComboBox.IsEnabled = false;
+            C9_ComboBox.IsEnabled = false;
+        }
+
+        private void InitportBFrequency()
+        {
+            foreach(string portBFrequencyValue in portBFrequencyValues)
+            {
+                B0_Frequency.Items.Add(portBFrequencyValue);
+                B1_Frequency.Items.Add(portBFrequencyValue);
+                B2_Frequency.Items.Add(portBFrequencyValue);
+                B3_Frequency.Items.Add(portBFrequencyValue);
+                B4_Frequency.Items.Add(portBFrequencyValue);
+                B5_Frequency.Items.Add(portBFrequencyValue);
+            }
+
+            B0_Frequency.SelectedItem = "Medium";
+            B1_Frequency.SelectedItem = "Medium";
+            B2_Frequency.SelectedItem = "Medium";
+            B3_Frequency.SelectedItem = "Medium";
+            B4_Frequency.SelectedItem = "Medium";
+            B5_Frequency.SelectedItem = "Medium";
+
+            B0_Frequency.IsEnabled = false;
+            B1_Frequency.IsEnabled = false;
+            B2_Frequency.IsEnabled = false;
+            B3_Frequency.IsEnabled = false;
+            B4_Frequency.IsEnabled = false;
+            B5_Frequency.IsEnabled = false;
         }
 
         private void InitPortAIndicators()
@@ -440,7 +483,10 @@ namespace WpfApp1
             }
             catch(Exception ex)
             {
-                testLabel.Content = ex.Message;
+                Dispatcher.Invoke(() =>
+                {
+                    testLabel.Content = ex.Message;
+                });
             }
 
 
