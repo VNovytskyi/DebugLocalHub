@@ -1,0 +1,207 @@
+﻿<Window x:Class="WpfApp1.MainWindow" Closed="Window_Closed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="DebugLocalHub v0.0" Height="843.47" Width="1571.6" WindowState="Maximized">
+    <Grid Margin="-1,-7,3.8,5.6">
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="453" Margin="680,66,0,0" Stroke="Black" VerticalAlignment="Top" Width="816"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="306" Margin="1337,81,0,0" Stroke="Black" VerticalAlignment="Top" Width="153"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="53" Margin="1345,214,0,0" Stroke="Black" VerticalAlignment="Top" Width="137" RenderTransformOrigin="1.316,-3.892"/>
+        <GroupBox Header="Applied Modules" HorizontalAlignment="Left" Height="97" Margin="233,467,0,0" VerticalAlignment="Top" Width="347" FontSize="14"/>
+        <GroupBox Header="Port settings" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="218" FontSize="14"/>
+        <GroupBox Header="Display" HorizontalAlignment="Left" Height="189" Margin="23,258,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
+        <GroupBox Header="Actions" HorizontalAlignment="Left" Height="70" Margin="22,529,0,0" VerticalAlignment="Top" Width="194" FontSize="14"/>
+        <GroupBox Header="Main settings" HorizontalAlignment="Left" Height="190" Margin="22,66,0,0" VerticalAlignment="Top" Width="194" FontSize="14"/>
+        <ComboBox x:Name="PortsComboBox" HorizontalAlignment="Left" Margin="124,101,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label Content="Com port:" HorizontalAlignment="Left" Margin="32,99,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Baud rate:" HorizontalAlignment="Left" Margin="32,128,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="BaudRateValuesComboBox" HorizontalAlignment="Left" Margin="124,131,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label Content="Data bits:" HorizontalAlignment="Left" Margin="32,157,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="DataBitsValuesComboBox" HorizontalAlignment="Left" Margin="124,162,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label Content="Parity:" HorizontalAlignment="Left" Margin="32,186,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="ParityValuesComboBox" HorizontalAlignment="Left" Margin="124,192,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label Content="Stop bits:" HorizontalAlignment="Left" Margin="32,215,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="StopBitsValuesComboBox" HorizontalAlignment="Left" Margin="124,221,0,0" VerticalAlignment="Top" Width="78"/>
+        <Button x:Name="ConnectToComPortButton" Content="Open" HorizontalAlignment="Left" Margin="32,560,0,0" VerticalAlignment="Top" Width="85" Click="Button_Click" FontSize="14" Height="23"/>
+        <Button x:Name="DisconnectToComPortButton" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Margin="124,560,0,0" FontSize="14" Height="23" Click="DisconnectToComPortButton_Click"/>
+        <CheckBox IsChecked="True"  x:Name="CommandTimeCheckBox" Content="Command time" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,320,0,0" Width="121" FontSize="14"/>
+        <CheckBox x:Name="SystemLogsCheckBox" IsChecked="True" Content="System logs" HorizontalAlignment="Left" Margin="42,292,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <CheckBox x:Name="DisplayReceiverDataCheckBox" IsChecked="True" Content="Receiver data" HorizontalAlignment="Left" Margin="42,378,0,0" VerticalAlignment="Top" FontSize="14" Width="108"/>
+        <CheckBox x:Name="DisplayTransiverDataCheckBox" IsChecked="True" Content="Transiver data" HorizontalAlignment="Left" Margin="42,349,0,0" VerticalAlignment="Top" FontSize="14" Width="121"/>
+        <CheckBox IsChecked="False" x:Name="DisplaySenderCheckBox" Content="Sender" HorizontalAlignment="Left" Margin="42,407,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <GroupBox Header="Other" HorizontalAlignment="Left" Height="65" Margin="23,455,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
+        <CheckBox x:Name="AutoConnectToPortCheckBox" IsChecked="True" Content="Auto connect" HorizontalAlignment="Left" Margin="42,489,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <GroupBox Header="Port A" HorizontalAlignment="Left" Height="202" Margin="243,40,0,0" VerticalAlignment="Top" Width="123" FontSize="14"/>
+        <CheckBox Content="A0" HorizontalAlignment="Left" Margin="254,71,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A1" HorizontalAlignment="Left" Margin="254,91,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A2" HorizontalAlignment="Left" Margin="254,111,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A3" HorizontalAlignment="Left" Margin="254,131,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A4" HorizontalAlignment="Left" Margin="254,151,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A5" HorizontalAlignment="Left" Margin="254,171,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A6" HorizontalAlignment="Left" Margin="254,191,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A7" HorizontalAlignment="Left" Margin="254,211,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A8" HorizontalAlignment="Left" Margin="306,71,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A9" HorizontalAlignment="Left" Margin="306,91,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A10" HorizontalAlignment="Left" Margin="306,111,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A11" HorizontalAlignment="Left" Margin="306,132,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A12" HorizontalAlignment="Left" Margin="306,152,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A13" HorizontalAlignment="Left" Margin="306,172,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A14" HorizontalAlignment="Left" Margin="306,191,0,0" VerticalAlignment="Top" Click="PortA_ClickHandler"/>
+        <CheckBox Content="A15" HorizontalAlignment="Left" Margin="306,211,0,0" VerticalAlignment="Top" Width="42" Click="PortA_ClickHandler"/>
+        <GroupBox Header="Port B" HorizontalAlignment="Left" Height="201" Margin="371,40,0,0" VerticalAlignment="Top" Width="270" FontSize="14"/>
+        <Label Content="B0" HorizontalAlignment="Left" Margin="381,66,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="B0" HorizontalAlignment="Left" Margin="410,70,0,0" VerticalAlignment="Top" Width="161" Height="22" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <Label Content="B1" HorizontalAlignment="Left" Margin="381,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.606,0.734"/>
+        <Slider x:Name="B1" HorizontalAlignment="Left" Margin="410,97,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <Label Content="B2" HorizontalAlignment="Left" Margin="381,118,0,0" VerticalAlignment="Top"/>
+        <Label Content="B3" HorizontalAlignment="Left" Margin="381,144,0,0" VerticalAlignment="Top"/>
+        <Label Content="B4" HorizontalAlignment="Left" Margin="381,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="B5" HorizontalAlignment="Left" Margin="381,198,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="B2" HorizontalAlignment="Left" Margin="410,123,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <Slider x:Name="B3" HorizontalAlignment="Left" Margin="410,149,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <Slider x:Name="B4" HorizontalAlignment="Left" Margin="410,175,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <Slider x:Name="B5" HorizontalAlignment="Left" Margin="410,203,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
+        <GroupBox Header="Port C" HorizontalAlignment="Left" Height="178" Margin="243,247,0,0" VerticalAlignment="Top" Width="398" FontSize="14"/>
+        <Label x:Name="testLabel" Content="Label" HorizontalAlignment="Left" Margin="247,579,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <xctk:ColorPicker x:Name="cp" Margin="284,505,0,0" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" HorizontalAlignment="Left" Width="46" RenderTransformOrigin="0.915,0.479" Height="33" VerticalAlignment="Top" />
+        <Label Content="RGB" HorizontalAlignment="Left" Margin="247,512,0,0" VerticalAlignment="Top"/>
+        <Label Content="LocalHub" HorizontalAlignment="Left" Margin="1029,247,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Menu Height="23" Margin="0,7,-0.4,0" VerticalAlignment="Top"/>
+        <Label Content="PortA" HorizontalAlignment="Left" Margin="874,405,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="PortB" HorizontalAlignment="Left" Margin="1197,410,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="PortC" HorizontalAlignment="Left" Margin="1277,201,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="61" Margin="695,442,0,0" Stroke="Black" VerticalAlignment="Top" Width="413"/>
+        <Ellipse x:Name="A0_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="704,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A1_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="729,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A2_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="754,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A3_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="779,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A4_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="804,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A5_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="829,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A6_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="854,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A7_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="879,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A8_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="904,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A9_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="929,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A10_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="954,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A11_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="979,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A12_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="1004,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A13_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="1029,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A14_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="1054,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="A15_Indicator" Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="1079,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.52"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="61" Margin="1139,442,0,0" Stroke="Black" VerticalAlignment="Top" Width="164"/>
+        <Ellipse x:Name="B0_Indicator" HorizontalAlignment="Left" Height="20" Margin="1148,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0.536"/>
+                    <GradientStop Color="Red" Offset="0.6"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse x:Name="B1_Indicator" Fill="#FF424242" HorizontalAlignment="Left" Height="20" Margin="1173,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="B2_Indicator" Fill="#FF424242" HorizontalAlignment="Left" Height="20" Margin="1198,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="B3_Indicator" Fill="#FF424242" HorizontalAlignment="Left" Height="20" Margin="1223,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="B4_Indicator" Fill="#FF424242" HorizontalAlignment="Left" Height="20" Margin="1248,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="B5_Indicator" Fill="#FF424242" HorizontalAlignment="Left" Height="20" Margin="1273,473,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="1345,92,0,0" Stroke="Black" VerticalAlignment="Top" Width="137" RenderTransformOrigin="1.316,-3.892"/>
+        <Ellipse x:Name="C1_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,125,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C0_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label Content="CAN" HorizontalAlignment="Left" Margin="1351,110,0,0" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="59" Margin="1345,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="137" RenderTransformOrigin="1.316,-3.892"/>
+        <Label Content="UART" HorizontalAlignment="Left" Margin="1351,168,0,0" VerticalAlignment="Top"/>
+        <Ellipse x:Name="C2_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,160,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C3_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,185,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C5_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,244,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C4_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,219,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label Content="I2C" HorizontalAlignment="Left" Margin="1354,227,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="108" Margin="1345,272,0,0" Stroke="Black" VerticalAlignment="Top" Width="137" RenderTransformOrigin="1.316,-3.892"/>
+        <Ellipse x:Name="C6_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,278,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C7_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,303,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C8_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,328,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Ellipse x:Name="C9_Indicator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Margin="1458,353,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label Content="SPI" HorizontalAlignment="Left" Margin="1354,309,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Legend" HorizontalAlignment="Left" Margin="1332,527,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Ellipse Fill="#FF454545" HorizontalAlignment="Left" Height="20" Margin="1352,571,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <Label Content="- Low" HorizontalAlignment="Left" Margin="1379,565,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Ellipse Fill="Red" HorizontalAlignment="Left" Height="20" Margin="1352,596,0,0" Stroke="Red" VerticalAlignment="Top" Width="20"/>
+        <Label Content="- High" HorizontalAlignment="Left" Margin="1378,589,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <CheckBox Content="CAN" HorizontalAlignment="Left" Margin="256,294,0,0" VerticalAlignment="Top" FontSize="14" Click="PortC_ClickHandler"/>
+        <CheckBox Content="UART" HorizontalAlignment="Left" Margin="256,317,0,0" VerticalAlignment="Top" FontSize="14" Click="PortC_ClickHandler"/>
+        <CheckBox Content="I2C" HorizontalAlignment="Left" Margin="255,340,0,0" VerticalAlignment="Top" FontSize="14" Click="PortC_ClickHandler"/>
+        <CheckBox Content="SPI" HorizontalAlignment="Left" Margin="256,363,0,0" VerticalAlignment="Top" FontSize="14" Click="PortC_ClickHandler"/>
+        <Label Content="C0" HorizontalAlignment="Left" Margin="340,271,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C1" HorizontalAlignment="Left" Margin="340,298,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C2" HorizontalAlignment="Left" Margin="340,325,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C3" HorizontalAlignment="Left" Margin="340,352,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C4" HorizontalAlignment="Left" Margin="340,378,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C5" HorizontalAlignment="Left" Margin="493,271,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="0.594,0.299"/>
+        <Label Content="C6" HorizontalAlignment="Left" Margin="493,298,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C7" HorizontalAlignment="Left" Margin="493,324,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C8" HorizontalAlignment="Left" Margin="493,352,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="C9" HorizontalAlignment="Left" Margin="493,379,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="C0_ComboBox" HorizontalAlignment="Left" Margin="371,275,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C5_ComboBox" HorizontalAlignment="Left" Margin="524,275,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C1_ComboBox" HorizontalAlignment="Left" Margin="371,302,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C2_ComboBox" HorizontalAlignment="Left" Margin="371,329,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C3_ComboBox" HorizontalAlignment="Left" Margin="371,356,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C4_ComboBox" HorizontalAlignment="Left" Margin="371,383,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C6_ComboBox" HorizontalAlignment="Left" Margin="524,302,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C7_ComboBox" HorizontalAlignment="Left" Margin="524,329,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C8_ComboBox" HorizontalAlignment="Left" Margin="524,356,0,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="C9_ComboBox" HorizontalAlignment="Left" Margin="524,383,0,0" VerticalAlignment="Top" Width="106"/>
+        <Label Content="RX / C2" HorizontalAlignment="Left" Margin="1403,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="TX / C3" HorizontalAlignment="Left" Margin="1405,183,0,0" VerticalAlignment="Top"/>
+        <Label Content="SDA / C4" HorizontalAlignment="Left" Margin="1396,216,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="SCL / C5" HorizontalAlignment="Left" Margin="1399,240,0,0" VerticalAlignment="Top"/>
+        <Label Content="MOSI / C6" HorizontalAlignment="Left" Margin="1389,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="MISO / C7" HorizontalAlignment="Left" Margin="1389,301,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="SCK / C8" HorizontalAlignment="Left" Margin="1397,326,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="CS / C9" HorizontalAlignment="Left" Margin="1403,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="B0" HorizontalAlignment="Left" Margin="1146,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="B1" HorizontalAlignment="Left" Margin="1171,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="B2" HorizontalAlignment="Left" Margin="1196,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="B3" HorizontalAlignment="Left" Margin="1221,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="B4" HorizontalAlignment="Left" Margin="1246,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="B5" HorizontalAlignment="Left" Margin="1271,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A0" HorizontalAlignment="Left" Margin="702,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A1" HorizontalAlignment="Left" Margin="727,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A3" HorizontalAlignment="Left" Margin="778,445,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.233,0.469"/>
+        <Label Content="A4" HorizontalAlignment="Left" Margin="803,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A5" HorizontalAlignment="Left" Margin="828,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A6" HorizontalAlignment="Left" Margin="852,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A7" HorizontalAlignment="Left" Margin="879,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A8" HorizontalAlignment="Left" Margin="903,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A9" HorizontalAlignment="Left" Margin="928,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A10" HorizontalAlignment="Left" Margin="949,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A11" HorizontalAlignment="Left" Margin="974,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A12" HorizontalAlignment="Left" Margin="1000,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A13" HorizontalAlignment="Left" Margin="1025,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A14" HorizontalAlignment="Left" Margin="1050,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A15" HorizontalAlignment="Left" Margin="1076,445,0,0" VerticalAlignment="Top"/>
+        <Label Content="A2" HorizontalAlignment="Left" Margin="752,445,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="137" Margin="23,659,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1493" FontSize="14"/>
+        <Label Content="Log" HorizontalAlignment="Left" Margin="22,625,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="RX / C0" HorizontalAlignment="Left" Margin="1403,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
+        <Label Content="TX / C1" HorizontalAlignment="Left" Margin="1405,121,0,0" VerticalAlignment="Top"/>
+        <Ellipse x:Name="B0_Indicator_Copy" HorizontalAlignment="Left" Height="20" Margin="1354,621,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0.536"/>
+                    <GradientStop Color="Red" Offset="0.6"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Label Content="- PWM" HorizontalAlignment="Left" Margin="1379,616,0,0" VerticalAlignment="Top" FontSize="14"/>
+    </Grid>
+</Window>
