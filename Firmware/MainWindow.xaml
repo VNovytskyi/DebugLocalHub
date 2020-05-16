@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         Title="DebugLocalHub v0.1" Height="843.47" Width="1571.6" WindowState="Maximized">
     <Grid Margin="-1,-7,3.8,5.6">
+        <GroupBox Header="Applied Modules" HorizontalAlignment="Left" Height="183" Margin="243,431,0,0" VerticalAlignment="Top" Width="432" FontSize="14"/>
+        <GroupBox Header="RGB" HorizontalAlignment="Left" Height="80" Margin="256,459,0,0" VerticalAlignment="Top" Width="210" FontSize="14"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="453" Margin="698,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="816"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="306" Margin="1355,67,0,0" Stroke="Black" VerticalAlignment="Top" Width="153"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="53" Margin="1363,200,0,0" Stroke="Black" VerticalAlignment="Top" Width="137" RenderTransformOrigin="1.316,-3.892"/>
-        <GroupBox Header="Applied Modules" HorizontalAlignment="Left" Height="97" Margin="233,467,0,0" VerticalAlignment="Top" Width="347" FontSize="14"/>
         <GroupBox Header="Port settings" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="218" FontSize="14"/>
         <GroupBox Header="Display" HorizontalAlignment="Left" Height="189" Margin="23,258,0,0" VerticalAlignment="Top" Width="191" FontSize="14"/>
         <GroupBox Header="Actions" HorizontalAlignment="Left" Height="70" Margin="22,529,0,0" VerticalAlignment="Top" Width="194" FontSize="14"/>
@@ -66,9 +67,7 @@
         <Slider x:Name="B4" HorizontalAlignment="Left" Margin="410,175,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
         <Slider x:Name="B5" HorizontalAlignment="Left" Margin="410,201,0,0" VerticalAlignment="Top" Width="161" Minimum="0" Maximum="65535"  Thumb.DragCompleted="PortB_Handler"/>
         <GroupBox Header="Port C" HorizontalAlignment="Left" Height="178" Margin="243,247,0,0" VerticalAlignment="Top" Width="432" FontSize="14"/>
-        <Label x:Name="testLabel" Content="Label" HorizontalAlignment="Left" Margin="247,579,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <xctk:ColorPicker x:Name="cp" Margin="284,505,0,0" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" HorizontalAlignment="Left" Width="46" RenderTransformOrigin="0.915,0.479" Height="33" VerticalAlignment="Top" />
-        <Label Content="RGB" HorizontalAlignment="Left" Margin="247,512,0,0" VerticalAlignment="Top"/>
+        <xctk:ColorPicker x:Name="cp" Margin="277,489,0,0" DisplayColorAndName="True" SelectedColorChanged="cp_SelectedColorChanged_1" AvailableColorsSortingMode="HueSaturationBrightness" HorizontalAlignment="Left" Width="71" RenderTransformOrigin="0.915,0.479" Height="33" VerticalAlignment="Top" />
         <Label Content="LocalHub" HorizontalAlignment="Left" Margin="1047,233,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Menu Height="23" Margin="0,7,-0.4,0" VerticalAlignment="Top"/>
         <Label Content="PortA" HorizontalAlignment="Left" Margin="892,391,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -185,7 +184,7 @@
         <Label Content="A14" HorizontalAlignment="Left" Margin="1068,431,0,0" VerticalAlignment="Top"/>
         <Label Content="A15" HorizontalAlignment="Left" Margin="1094,431,0,0" VerticalAlignment="Top"/>
         <Label Content="A2" HorizontalAlignment="Left" Margin="770,431,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="False" HorizontalAlignment="Left" Height="137" Margin="23,659,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1493" FontSize="14"/>
+        <TextBox VerticalScrollBarVisibility="Visible" x:Name="LogText" IsEnabled="True" IsReadOnly="True" HorizontalAlignment="Left" Height="137" Margin="23,659,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1493" FontSize="14"/>
         <Label Content="Log" HorizontalAlignment="Left" Margin="22,625,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="RX / C0" HorizontalAlignment="Left" Margin="1421,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,3.056"/>
         <Label Content="TX / C1" HorizontalAlignment="Left" Margin="1423,107,0,0" VerticalAlignment="Top"/>
@@ -195,5 +194,6 @@
         <ComboBox x:Name="B3_Frequency" HorizontalAlignment="Left" Margin="580,146,0,0" VerticalAlignment="Top" Width="86"/>
         <ComboBox x:Name="B4_Frequency" HorizontalAlignment="Left" Margin="580,172,0,0" VerticalAlignment="Top" Width="86"/>
         <ComboBox x:Name="B5_Frequency" HorizontalAlignment="Left" Margin="580,198,0,0" VerticalAlignment="Top" Width="86"/>
+        <CheckBox IsChecked="True" x:Name="RGB_MaxSpeed_CheckBox" Content="Max speed" HorizontalAlignment="Left" Margin="369,498,0,0" VerticalAlignment="Top" FontSize="14"/>
     </Grid>
 </Window>

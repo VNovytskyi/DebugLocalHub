@@ -23,11 +23,14 @@ namespace WpfApp1
         
         private static SerialPort serialPort = null;
 
+
+        /*
+         * Default values for comboBoxes   
+        */
         readonly private static string[] baudRateValues = { "9600", "115200" };
         readonly private static string[] dataBitsValues = { "5", "6", "7", "8", "9" };
         readonly private static string[] parityValues = { "None", "Odd", "Even", "Mark", "Space" };
         readonly private static string[] stopBitsValues = { "1", "2", "1.5" };
-        readonly private static string[] EndOfLineValues = { "None", "NL", "CR", "NL&CR" };
         readonly private static string[] portCValues = { "Digital Input", "Analog Input" };
         readonly private static string[] portBFrequencyValues = { "Low", "Medium", "High" };
 
@@ -39,10 +42,6 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-
-            /*
-              Init all ComboBoxes
-            */
             InitBaudRateValuesComboBox();
             InitDataBitsValuesComboBox();
             InitParityValuesComboBox();
@@ -50,11 +49,9 @@ namespace WpfApp1
             InitPortCModeValuesComboBox();
             InitportBFrequency();
             
-            
             InitPortAIndicators();
             InitPortBIndicators();
             InitPortCIndicators();
-
 
             serialPort = new SerialPort();
 
@@ -66,7 +63,9 @@ namespace WpfApp1
         }
 
 
-
+        /*
+         * Function for updating state of COM-port
+         */
         private void RefreshCurrentComPortStateFunc()
         {
             while(true)
@@ -83,6 +82,9 @@ namespace WpfApp1
             }
         }
 
+        /*
+         * 
+         */
         private void RefreshComPortsListFunc()
         {
             while(true)
@@ -379,11 +381,16 @@ namespace WpfApp1
         {
             string str = string.Empty;
 
-            Dispatcher.Invoke(()=> str = "Try connect to " + PortsComboBox.SelectedItem + " (" +
+            Dispatcher.Invoke(()=>
+            {
+                str = "Try connect to " + PortsComboBox.SelectedItem + " (" +
                               BaudRateValuesComboBox.SelectedItem + ", " +
                               DataBitsValuesComboBox.SelectedItem + ", " +
                               ParityValuesComboBox.SelectedItem + ", " +
-                              StopBitsValuesComboBox.SelectedItem + ")");
+                              StopBitsValuesComboBox.SelectedItem + ")";
+                
+                LogText.Text += str + '\n';
+            });
 
             allowRefreshComPorts.Reset();
             DisableSettings();
@@ -424,26 +431,24 @@ namespace WpfApp1
             }
             catch (Exception e)
             {
+                displayLog("[ ERROR ] Connect to COM port. Stop connecting...");
                 StopConnection();
                 return;
             }
 
             allowRefreshCurrentComPortState.Set();
 
-            Dispatcher.Invoke(() =>
-            {
-                DisconnectToComPortButton.IsEnabled = true;
-               
-            });
+            Dispatcher.Invoke(() => DisconnectToComPortButton.IsEnabled = true );
 
-            //Connection successful
+            displayLog("[ OK ] Connect to COM port.");
+
             serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiverDataFunc);
         }
 
         private void DisconnectToComPortButton_Click(object sender, RoutedEventArgs e)
         {
+            displayLog("Completion work with COM port...");
             StopConnection();
-            //Connection is closed
         }
 
         private void StopConnection()
@@ -461,10 +466,15 @@ namespace WpfApp1
             {
                 serialPort.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-               //e.Message
+                displayLog("[ ERROR ] Close COM port.");
+                displayLog(ex.Message);
+                return;
             }
+
+            displayLog("[ OK ] Close COM port.");
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -481,14 +491,15 @@ namespace WpfApp1
             {
                 str = serialPort.ReadLine();
             }
+            catch(TimeoutException ex)
+            {
+                displayLog("[ WARNING ] Timeout exception when read line from COM port.");
+            }
             catch(Exception ex)
             {
-                Dispatcher.Invoke(() =>
-                {
-                    testLabel.Content = ex.Message;
-                });
+                displayLog("[ ERROR ] Read line from COM port.\n");
+                displayLog(ex.Message);
             }
-
 
             Dispatcher.Invoke(() =>
             {
@@ -546,11 +557,21 @@ namespace WpfApp1
                 ++cmd;
 
             byte[] arr = new byte[2] {cmd, (byte)'\n'};
-            
-            testLabel.Content = "Send arr: [ " + String.Join(", ", arr) + " ]";
 
-            TransiverData = new Thread(new ParameterizedThreadStart(TransiverArrayFunc));
-            TransiverData.Start(arr);
+            try
+            {
+                serialPort.Write(arr, 0, 2);
+            }
+            catch (Exception ex)
+            {
+                displayLog("[ ERROR ] Send arr to COM port.");
+                displayLog(ex.Message);
+            }
+
+            //TransiverData = new Thread(new ParameterizedThreadStart(TransiverArrayFunc));
+            //TransiverData.Start(arr);
+
+            displayLog("Send arr: [ " + String.Join(", ", arr) + " ]");
         }
 
         private void TransiverArrayFunc(object arr)
@@ -563,7 +584,8 @@ namespace WpfApp1
             }
             catch (Exception e)
             {
-                Dispatcher.Invoke(() => testLabel.Content = e.Message);
+                //Dispatcher.Invoke(() => testLabel.Content = e.Message);
+               // displayLog();
                 return;
             }
         }
@@ -576,21 +598,34 @@ namespace WpfApp1
             {
                 Color C = cp.SelectedColor.Value;
                
-                int Red = C.R * 255;
-                int Green = C.G * 255;
-                int Blue = C.B * 255;
-                
+                int Red = C.R * 257;
+                int Green = C.G * 257;
+                int Blue = C.B * 257;
+
+                B0.Value = Red;
+                B1.Value = Green;
+                B2.Value = Blue;
+
                 byte[] arr = new byte[] { 0x23, (byte)(Red >> 8), (byte)(Red & 0xff), 0x25, (byte)(Green >> 8), (byte)(Green & 0xff), 0x27, (byte)(Blue >> 8), (byte)(Blue & 0xff), (byte)'\n' };
 
-                //Максимум скорости
+                if(RGB_MaxSpeed_CheckBox.IsChecked == false)
+                {
+                    try
+                    {
+                        serialPort.Write(arr, 0, arr.Length);
+                    }
+                    catch(Exception ex)
+                    {
+                        displayLog("[ ERROR ] Send data to serial port.");
+                        displayLog(ex.Message);
+                        return;
+                    }
 
-                try
+                    displayLog("Send arr: [ " + String.Join(", ", arr) + " ]");
+                }
+                else
                 {
                     serialPort.Write(arr, 0, arr.Length);
-                }
-                catch(Exception ex)
-                {
-                    testLabel.Content = ex.Message;
                 }
             }
 
@@ -612,12 +647,10 @@ namespace WpfApp1
             else
                 arr = new byte[] { cmd, (byte)(pwmValue >> 8), (byte)(pwmValue & 0xff), (byte)'\n' };
 
-            testLabel.Content = "Send arr: [ " + String.Join(", ", arr) + " ]";
+            displayLog("Send arr: [ " + String.Join(", ", arr) + " ]");
 
             TransiverData = new Thread(new ParameterizedThreadStart(TransiverArrayFunc));
             TransiverData.Start(arr);
-
-
 
             float value = ((float)pwmValue / 656) / 100;
             
@@ -741,6 +774,15 @@ namespace WpfApp1
                     }
                     break;
             }
+        }
+
+        private void displayLog(string str)
+        {
+            Dispatcher.Invoke(() => {
+
+                LogText.Text += str + '\n';
+                LogText.ScrollToEnd();
+            });
         }
     }
 }
